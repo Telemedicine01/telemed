@@ -50,19 +50,19 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
             <a
-              href="/doctors"
+              href="/doc"
               className="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
             >
               Doctors
             </a>
             <a
-              href="/patients"
+              href="/patient"
               className="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
             >
               Patients
             </a>
 
-            {/* Health Apps Dropdown */}
+            {/* Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsAppsDropdownOpen(!isAppsDropdownOpen)}
@@ -122,9 +122,9 @@ const Navbar = () => {
             <button className="px-5 py-2.5 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors duration-200">
               Login
             </button>
-            <button className="px-5 py-2.5 bg-gradient-to-r from-teal-500 to-blue-600 text-white font-medium text-sm rounded-lg hover:opacity-90 transition-opacity duration-200 shadow-sm">
-              Sign Up
-            </button>
+            <button className="w-full px-4 py-2 border border-blue-900 text-blue-900 rounded-md hover:bg-blue-50 text-sm font-medium">
+                  Sign Up
+                </button>
           </div>
 
           {/* Mobile menu button */}
@@ -150,14 +150,14 @@ const Navbar = () => {
         <div className="mobile-menu-container md:hidden absolute top-16 inset-x-0 bg-white shadow-xl rounded-b-2xl border-t border-gray-100 transition-all duration-300">
           <div className="px-5 pt-4 pb-6 space-y-1">
             <a
-              href="/doctors"
+              href="/doc"
               className="block text-gray-700 hover:text-blue-600 px-3 py-3 rounded-lg text-base font-medium transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Doctors
             </a>
             <a
-              href="/patients"
+              href="/patient"
               className="block text-gray-700 hover:text-blue-600 px-3 py-3 rounded-lg text-base font-medium transition-colors duration-200"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -227,7 +227,7 @@ const Navbar = () => {
                 Login
               </button>
               <button 
-                className="w-full px-4 py-3 bg-gradient-to-r from-teal-500 to-blue-600 text-white rounded-lg hover:opacity-90 text-base font-medium transition-opacity duration-200 shadow-sm"
+                className="w-full px-4 py-3 bg-gradient-to-ateal-500  text-white rounded-lg hover:opacity-90 text-base font-medium transition-opacity duration-200 shadow-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Sign Up
