@@ -64,31 +64,31 @@ const DocSidebar = ({ navLinks = [] }) => {
       path: 'docprofile', 
       icon: User, 
       label: 'Profile',
-      color: 'text-teal-500'
+      color: 'text-blue-500'
     },
     { 
       path: 'create-post', 
       icon: Plus, 
       label: 'Create Post',
-      color: 'text-purple-500'
+      color: 'text-blue-500'
     },
     { 
       path: 'myposts', 
       icon: FileText, 
       label: 'My Posts',
-      color: 'text-pink-500'
+      color: 'text-blue-500'
     },
     { 
-      path: 'appointments', 
+      path: 'docappointments', 
       icon: ClipboardList, 
       label: 'Appointments',
-      color: 'text-amber-500'
+      color: 'text-blue-500'
     },
     { 
-      path: 'messages', 
+      path: 'docchat', 
       icon: MessageSquare, 
       label: 'Messages',
-      color: 'text-indigo-500'
+      color: 'text-blue-500'
     },
   ];
 

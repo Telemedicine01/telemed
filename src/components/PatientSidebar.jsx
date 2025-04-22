@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Home, Activity, Calendar,  User, ChevronLeft, Menu, MessageSquare, Plus, Settings, LogOut,} from "lucide-react";
-import {Link} from 'react-router'
+import { Home, Activity, Calendar, User, ChevronLeft, Menu, MessageSquare, Plus, Settings, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const PatientSidebar = ({ navLinks = [] }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -42,31 +42,31 @@ const PatientSidebar = ({ navLinks = [] }) => {
 
   const defaultLinks = [
     {
-      path: "pathome",
+      path: "/patient/pathome",
       icon: Home,
       label: "Dashboard",
       color: "text-blue-500",
     },
     {
-      path: "feed",
+      path: "/patient/feed",
       icon: Activity,
       label: "Health Feed",
       color: "text-teal-500",
-    },
+    },    
     {
-      path: "appointments",
+      path: "/patient/appointments",
       icon: Calendar,
       label: "Appointments",
       color: "text-purple-500",
     },
     {
-      path: "patprofile",
+      path: "/patient/patprofile",
       icon: User,
       label: "Profile",
       color: "text-pink-500",
     },
     {
-      path: "messages",
+      path: "/patient/patchat",
       icon: MessageSquare,
       label: "Messages",
       color: "text-amber-500",
@@ -74,7 +74,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
   ];
 
   const links = navLinks.length > 0 ? navLinks : defaultLinks;
-  const activeLink = "pathome"; 
+  const activeLink = window.location.pathname;
 
   return (
     <>
@@ -109,21 +109,21 @@ const PatientSidebar = ({ navLinks = [] }) => {
           } py-6 px-4 border-b`}
         >
           {!isCollapsed && (
-            <a href="/" className="flex items-center group">
+            <Link to="/" className="flex items-center group">
               <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
                 <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
               </div>
               <span className="ml-2 text-blue-900 font-bold text-xl tracking-tight">
                 TeleHealth
               </span>
-            </a>
+            </Link>
           )}
           {isCollapsed && (
-            <a href="/" className="flex items-center justify-center">
+            <Link to="/" className="flex items-center justify-center">
               <div className="h-10 w-10 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center hover:rotate-90 transition-transform duration-300">
                 <Plus className="text-white w-5 h-5" strokeWidth={2.5} />
               </div>
-            </a>
+            </Link>
           )}
           {!isMobile && (
             <button
@@ -146,9 +146,9 @@ const PatientSidebar = ({ navLinks = [] }) => {
         {/* Nav Links */}
         <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
           {links.map((link, index) => (
-            <a
+            <Link
               key={index}
-              href={`/${link.path}`}
+              to={link.path}
               className={`flex items-center py-3 px-3 rounded-lg group transition-colors duration-200 ${
                 activeLink === link.path
                   ? `bg-blue-50 ${link.color}`
@@ -165,7 +165,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
               {!isCollapsed && (
                 <span className="ml-3 font-medium text-sm">{link.label}</span>
               )}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -176,8 +176,8 @@ const PatientSidebar = ({ navLinks = [] }) => {
           }`}
         >
           <div className="space-y-1">
-            <a
-              href="/settings"
+            <Link
+              to="/settings"
               className={`flex items-center py-3 px-3 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 ${
                 isCollapsed ? "justify-center" : ""
               }`}
@@ -186,7 +186,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
               {!isCollapsed && (
                 <span className="ml-3 text-sm font-medium">Settings</span>
               )}
-            </a>
+            </Link>
             <button
               className={`flex items-center py-3 px-3 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-red-600 transition-colors duration-200 w-full ${
                 isCollapsed ? "justify-center" : ""

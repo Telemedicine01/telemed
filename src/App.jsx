@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DocLayout from "./layout/DocLayout";
 import PatLayout from "./layout/PatLayout";
 import RootLayout from "./layout/RootLayout";
@@ -16,6 +16,10 @@ import Feed from "./pages/patient/Feed";
 import MyAppointments from "./pages/patient/MyAppointments";
 import PatHome from "./pages/patient/PatHome";
 import PatProfile from "./pages/patient/PatProfile";
+import Appointments from "./pages/doctor/Appointments";
+import DocChat from "./pages/doctor/DocChat";
+import PatChat from "./pages/patient/PatChat";
+import AllPatients from "./pages/doctor/AllPatients";
 
 function App() {
   return (
@@ -37,6 +41,9 @@ function App() {
           <Route path="docprofile" element={<DocProfile />} />
           <Route path="create-post" element={<CreatePost />} />
           <Route path="myposts" element={<MyPosts />} />
+          <Route path="docappointments" element={<Appointments />} />
+          <Route path="docchat" element={<DocChat />} />
+          <Route path="mypatients" element={<AllPatients />} />
         </Route>
 
         <Route path="/patient" element={<PatLayout />}>
@@ -44,6 +51,7 @@ function App() {
           <Route path="feed" element={<Feed />} />
           <Route path="appointments" element={<MyAppointments />} />
           <Route path="patprofile" element={<PatProfile />} />
+          <Route path="patchat" element={<PatChat />} />
         </Route>
 
       </Routes>
