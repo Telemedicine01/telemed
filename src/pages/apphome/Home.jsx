@@ -42,7 +42,7 @@ function Home() {
         <div className="w-full md:w-1/2 flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-24 relative z-10">
           <div className="flex items-center mb-4">
             <Building className="w-6 h-6 text-teal-400 mr-2" />
-            <span className="text-teal-400 font-medium">CITY HOSPITAL</span>
+            <span className="text-teal-400 font-medium">LOVE HOSPITAL</span>
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
             Exceptional Care <br />
@@ -58,33 +58,9 @@ function Home() {
             >
               Find a Specialist
             </Link>
-            <Link 
-              to="/locations" 
-              className="px-6 py-3 bg-transparent border border-white text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-300"
-            >
-              Our Locations
-            </Link>
           </div>
         </div>
 
-        <div className="w-full md:w-1/2 min-h-[300px] md:min-h-screen relative flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-l from-gray-900/80 via-gray-900/30 to-transparent md:bg-none"></div>
-          <div className="relative z-10 p-12 text-center">
-            <div className="inline-block bg-white p-1 rounded-full mb-6">
-              <div className="w-16 h-16 bg-teal-500 rounded-full flex items-center justify-center">
-                <Activity className="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-2">Emergency Care</h2>
-            <p className="text-gray-300 mb-4">24/7 emergency services</p>
-            <Link 
-              to="/emergency" 
-              className="inline-flex items-center text-teal-300 hover:text-teal-200 font-medium"
-            >
-              Emergency Information <ArrowRight className="ml-2 w-4 h-4" />
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* Hospital Stats */}
@@ -601,17 +577,12 @@ function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
-              to="/appointment" 
+              to="/appointmentS" 
               className="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-teal-600 font-medium rounded-lg shadow-md transition-all duration-300"
             >
               Book an Appointment
             </Link>
-            <Link 
-              to="/emergency" 
-              className="inline-block px-8 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-300"
-            >
-              Emergency Information
-            </Link>
+          
           </div>
         </div>
       </section>

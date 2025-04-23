@@ -33,7 +33,7 @@ const DocHome = () => {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="md:flex md:items-center md:justify-between">
             <div className="md:w-1/2 mb-10 md:mb-0">
-              <h5 className="text-emerald-200 font-medium mb-2">Memorial Hospital Virtual Care</h5>
+              <h5 className="text-emerald-200 font-medium mb-2">Love Hospital Virtual Care</h5>
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Extend Your Practice Beyond Hospital Walls</h1>
               <p className="text-xl mb-8 text-emerald-100 max-w-lg">
                 Join our hospital's elite team of physicians providing world-class care through our secure telehealth platform.
@@ -91,7 +91,7 @@ const DocHome = () => {
             <h5 className="text-emerald-600 font-medium mb-2">FOR OUR PHYSICIANS</h5>
             <h2 className="text-3xl font-bold mb-4">Why Join Our Telehealth Network</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Memorial Hospital provides our physicians with cutting-edge technology to deliver exceptional care remotely.
+              Love Hospital provides our physicians with cutting-edge technology to deliver exceptional care remotely.
             </p>
           </div>
           
@@ -103,7 +103,7 @@ const DocHome = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Expand Your Practice</h3>
               <p className="text-gray-600">
-                Leverage Memorial Hospital's reputation while reaching patients who cannot visit in person.
+                Leverage Love Hospital's reputation while reaching patients who cannot visit in person.
               </p>
             </div>
             
@@ -147,7 +147,7 @@ const DocHome = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Seamless Integration</h3>
               <p className="text-gray-600">
-                Fully integrated with Memorial Hospital's EMR system for smooth patient management.
+                Fully integrated with Love Hospital's EMR system for smooth patient management.
               </p>
             </div>
             
@@ -158,7 +158,7 @@ const DocHome = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3">Institutional Support</h3>
               <p className="text-gray-600">
-                Full technical, administrative, and clinical support from Memorial Hospital's staff.
+                Full technical, administrative, and clinical support from Love Hospital's staff.
               </p>
             </div>
           </div>
@@ -173,16 +173,16 @@ const DocHome = () => {
               <div className="bg-emerald-100 absolute -top-6 -left-6 w-48 h-48 rounded-full z-0"></div>
               <img 
                 src="/api/placeholder/500/600" 
-                alt="Memorial Hospital Building"
+                alt="Love Hospital Building"
                 className="rounded-lg shadow-xl relative z-10"
               />
               <div className="bg-teal-100 absolute -bottom-6 -right-6 w-32 h-32 rounded-full z-0"></div>
             </div>
             <div className="md:w-1/2">
-              <h5 className="text-emerald-600 font-medium mb-3">ABOUT MEMORIAL HOSPITAL</h5>
+              <h5 className="text-emerald-600 font-medium mb-3">ABOUT Love HOSPITAL</h5>
               <h2 className="text-3xl font-bold mb-6">A Legacy of Excellence in Healthcare</h2>
               <p className="text-gray-700 mb-6">
-                For over 50 years, Memorial Hospital has been at the forefront of medical innovation and patient care. 
+                For over 50 years, Love Hospital has been at the forefront of medical innovation and patient care. 
                 Our state-of-the-art facilities and world-class medical team ensure that patients receive the highest 
                 quality of care available.
               </p>
