@@ -11,7 +11,6 @@ import {
   File, 
   Image as ImageIcon,
   Mic,
-  MoreVertical,
   Clock,
   CheckCheck
 } from 'lucide-react';

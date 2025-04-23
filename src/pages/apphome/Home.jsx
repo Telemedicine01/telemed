@@ -230,7 +230,7 @@ function Home() {
                   <Bot className="w-4 h-4 text-white" />
                 </div>
                 <div className="bg-gray-700 px-4 py-2 rounded-r-lg rounded-bl-lg">
-                  <p className="text-white text-sm">Hello! I'm City Hospital's AI assistant. How can I help you today?</p>
+                  <p className="text-white text-sm">Hello! I'm Love Hospital's AI assistant. How can I help you today?</p>
                 </div>
               </div>
               
