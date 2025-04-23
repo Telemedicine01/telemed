@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="flex items-center group">
+            <a href="/home" className="flex items-center group">
               <div className="h-9 w-9 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
                 <Plus className="text-white w-5 h-5" strokeWidth={2.5} />
               </div>
@@ -49,6 +49,13 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
+            
+          <a
+              href="/"
+              className="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+            >
+           Home
+            </a>
             <a
               href="/doc"
               className="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
@@ -149,6 +156,13 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="mobile-menu-container md:hidden absolute top-16 inset-x-0 bg-white shadow-xl rounded-b-2xl border-t border-gray-100 transition-all duration-300">
           <div className="px-5 pt-4 pb-6 space-y-1">
+            
+          <a
+              href="/home"
+              className="text-gray-600 hover:text-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+            >
+              Home
+            </a>
             <a
               href="/doc"
               className="block text-gray-700 hover:text-blue-600 px-3 py-3 rounded-lg text-base font-medium transition-colors duration-200"
@@ -220,18 +234,9 @@ const Navbar = () => {
             </a>
 
             <div className="pt-4 space-y-3">
-              <button 
-                className="w-full px-4 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 text-base font-medium transition-colors duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Login
-              </button>
-              <button 
-                className="w-full px-4 py-3 bg-gradient-to-ateal-500  text-white rounded-lg hover:opacity-90 text-base font-medium transition-opacity duration-200 shadow-sm"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Sign Up
-              </button>
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition transform hover:scale-105 scroll-animate opacity-0 animate-delay-700">
+          Get Started
+        </button>
             </div>
           </div>
         </div>

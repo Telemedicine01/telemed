@@ -21,7 +21,6 @@ const DocSidebar = ({ navLinks = [] }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Update main content margin when sidebar state changes
   useEffect(() => {
     const mainContent = document.getElementById('main-content');
     if (mainContent) {
@@ -41,7 +40,6 @@ const DocSidebar = ({ navLinks = [] }) => {
     setIsMobileOpen(!isMobileOpen);
   };
 
-  // Close mobile sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isMobileOpen && !event.target.closest(".sidebar-container")) {
@@ -55,7 +53,7 @@ const DocSidebar = ({ navLinks = [] }) => {
 
   const defaultLinks = [
     { 
-      path: 'dochome', 
+      path: 'docdash', 
       icon: Home, 
       label: 'Dashboard',
       color: 'text-blue-500'
@@ -80,12 +78,12 @@ const DocSidebar = ({ navLinks = [] }) => {
     },
     { 
       path: 'docappointments', 
-      icon: ClipboardList, 
+      icon: Calendar, 
       label: 'Appointments',
       color: 'text-blue-500'
     },
     { 
-      path: 'docchat', 
+      path: 'mypatients', 
       icon: MessageSquare, 
       label: 'Messages',
       color: 'text-blue-500'
