@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router-dom';
 import { Home, Activity, Calendar, FileText, User, ChevronLeft, Menu, MessageSquare, Plus, Settings, LogOut, ClipboardList, Stethoscope } from "lucide-react";
 
 const DocSidebar = ({ navLinks = [] }) => {
@@ -10,8 +10,9 @@ const DocSidebar = ({ navLinks = [] }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-      if (window.innerWidth < 1024) {
+      const mobile = window.innerWidth < 1024;
+      setIsMobile(mobile);
+      if (mobile) {
         setIsCollapsed(true);
       }
     };
@@ -25,7 +26,7 @@ const DocSidebar = ({ navLinks = [] }) => {
     const mainContent = document.getElementById('main-content');
     if (mainContent) {
       if (isMobile) {
-        mainContent.style.marginLeft = '0px';
+        mainContent.style.marginLeft = '0';
       } else {
         mainContent.style.marginLeft = isCollapsed ? '80px' : '256px';
       }
@@ -98,11 +99,11 @@ const DocSidebar = ({ navLinks = [] }) => {
 
   return (
     <>
-      {/* Mobile Menu Toggle Button */}
+      {/* Mobile Menu Toggle Button - Moved to left side */}
       {isMobile && (
         <button
           onClick={toggleMobileSidebar}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-teal-500 to-teal-600 p-3 rounded-full shadow-lg text-white"
+          className="fixed bottom-6 left-6 z-50 bg-gradient-to-r from-teal-500 to-teal-600 p-3 rounded-full shadow-lg text-white hover:shadow-xl hover:scale-105 transition-all duration-200"
         >
           <Menu className="h-6 w-6" />
         </button>
@@ -111,7 +112,7 @@ const DocSidebar = ({ navLinks = [] }) => {
       {/* Sidebar Overlay */}
       {isMobile && isMobileOpen && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden"
           onClick={toggleMobileSidebar}
         ></div>
       )}
@@ -220,8 +221,8 @@ const DocSidebar = ({ navLinks = [] }) => {
           </div>
         </div>
 
-      {/* User Profile - Only show if not collapsed */}
-      {!isCollapsed && (
+        {/* User Profile - Only show if not collapsed */}
+        {!isCollapsed && (
           <div className="p-4 border-t">
             <Link to="/doc/docprofile" className="flex items-center">
               <div className="h-10 w-10 rounded-full bg-gradient-to-r from-teal-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
