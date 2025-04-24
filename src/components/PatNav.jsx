@@ -40,10 +40,10 @@ const PatNav = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center group">
-            <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+            <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
               <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
             </div>
-            <span className="ml-2 text-blue-900 font-bold text-xl tracking-tight">
+            <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
               TeleHealth
             </span>
           </Link>
@@ -61,7 +61,7 @@ const PatNav = () => {
                 placeholder="Search doctors, appointments, records..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 text-sm outline-none transition-all"
+                className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-gray-50 text-sm outline-none transition-all"
               />
             </div>
           </form>
@@ -98,7 +98,7 @@ const PatNav = () => {
                     notifications.map((notification) => (
                       <div 
                         key={notification.id}
-                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${!notification.read ? 'bg-blue-50' : ''}`}
+                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${!notification.read ? 'bg-teal-50' : ''}`}
                         onClick={() => markAsRead(notification.id)}
                       >
                         <p className="text-sm text-gray-700">{notification.text}</p>
@@ -108,7 +108,7 @@ const PatNav = () => {
                   )}
                 </div>
                 <div className="p-2 border-t border-gray-100 bg-gray-50">
-                  <button className="w-full text-center text-sm text-blue-600 hover:text-blue-800 font-medium py-1">
+                  <button className="w-full text-center text-sm text-teal-600 hover:text-teal-800 font-medium py-1">
                     View all notifications
                   </button>
                 </div>
@@ -117,13 +117,13 @@ const PatNav = () => {
           </div>
 
           {/* Messages */}
-          <Link to="/patient/patchat" className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+          <Link to="/patient/patmessages" className="p-2 rounded-full hover:bg-gray-100 transition-colors">
             <MessageSquare className="h-5 w-5 text-gray-600" />
           </Link>
 
           {/* User Profile */}
           <Link to="/patient/patprofile" className="flex items-center hover:bg-gray-50 rounded-full p-1 transition-colors">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-r from-teal-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
             <User className="h-5 w-5 text-white"/>
             </div>
             <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">Ama</span>

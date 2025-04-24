@@ -42,10 +42,10 @@ const PatientSidebar = ({ navLinks = [] }) => {
 
   const defaultLinks = [
     {
-      path: "/patient/pathome",
+      path: "/patient/patdash",
       icon: Home,
       label: "Dashboard",
-      color: "text-blue-500",
+      color: "text-teal-500",
     },
     {
       path: "/patient/feed",
@@ -66,7 +66,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
       color: "text-pink-500",
     },
     {
-      path: "/patient/patchat",
+      path: "/patient/patmessages",
       icon: MessageSquare,
       label: "Messages",
       color: "text-amber-500",
@@ -82,7 +82,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
       {isMobile && (
         <button
           onClick={toggleMobileSidebar}
-          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-teal-500 to-blue-600 p-3 rounded-full shadow-lg text-white"
+          className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-teal-500 to-teal-600 p-3 rounded-full shadow-lg text-white"
         >
           <Menu className="h-6 w-6" />
         </button>
@@ -110,17 +110,17 @@ const PatientSidebar = ({ navLinks = [] }) => {
         >
           {!isCollapsed && (
             <Link to="/" className="flex items-center group">
-              <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+              <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
                 <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
               </div>
-              <span className="ml-2 text-blue-900 font-bold text-xl tracking-tight">
+              <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
                 TeleHealth
               </span>
             </Link>
           )}
           {isCollapsed && (
             <Link to="/" className="flex items-center justify-center">
-              <div className="h-10 w-10 bg-gradient-to-r from-teal-500 to-blue-600 rounded-full flex items-center justify-center hover:rotate-90 transition-transform duration-300">
+              <div className="h-10 w-10 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center hover:rotate-90 transition-transform duration-300">
                 <Plus className="text-white w-5 h-5" strokeWidth={2.5} />
               </div>
             </Link>
@@ -128,7 +128,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
           {!isMobile && (
             <button
               onClick={toggleSidebar}
-              className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-blue-600 transition-colors duration-200 ${
+              className={`p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 hover:text-teal-600 transition-colors duration-200 ${
                 isCollapsed
                   ? "absolute top-6 -right-10 bg-white shadow-md rounded-full"
                   : ""
@@ -151,15 +151,15 @@ const PatientSidebar = ({ navLinks = [] }) => {
               to={link.path}
               className={`flex items-center py-3 px-3 rounded-lg group transition-colors duration-200 ${
                 activeLink === link.path
-                  ? `bg-blue-50 ${link.color}`
-                  : "text-gray-700 hover:bg-gray-50 hover:text-blue-600"
+                  ? `bg-teal-50 ${link.color}`
+                  : "text-gray-700 hover:bg-gray-50 hover:text-teal-600"
               } ${isCollapsed ? "justify-center" : ""}`}
             >
               <link.icon
                 className={`h-5 w-5 flex-shrink-0 transition-all duration-300 ${
                   activeLink === link.path
                     ? `${link.color}`
-                    : "text-gray-500 group-hover:text-blue-600"
+                    : "text-gray-500 group-hover:text-teal-600"
                 }`}
               />
               {!isCollapsed && (
@@ -178,7 +178,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
           <div className="space-y-1">
             <Link
               to="/settings"
-              className={`flex items-center py-3 px-3 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 ${
+              className={`flex items-center py-3 px-3 rounded-lg text-gray-700 hover:bg-gray-50 hover:text-teal-600 transition-colors duration-200 ${
                 isCollapsed ? "justify-center" : ""
               }`}
             >
@@ -204,7 +204,7 @@ const PatientSidebar = ({ navLinks = [] }) => {
         {!isCollapsed && (
           <div className="p-4 border-t">
             <Link to="/patient/patprofile" className="flex items-center">
-              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
+              <div className="h-10 w-10 rounded-full bg-gradient-to-r from-teal-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
                 <User className="h-5 w-5 text-white"/>
               </div>
               <div className="ml-3">

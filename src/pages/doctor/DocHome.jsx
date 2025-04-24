@@ -1,33 +1,11 @@
 import React from 'react';
-import { 
-  Stethoscope,
-  Clock,
-  Shield,
-  DollarSign,
-  Calendar,
-  Video,
-  MessageSquare,
-  User,
-  ArrowRight,
-  CheckCircle,
-  Building,
-  Award,
-  Briefcase,
-  FileText,
-  Phone,
-  Mail,
-  MapPin,
-  PieChart,
-  Heart,
-  Activity
-} from 'lucide-react';
+import { Stethoscope, Clock, Shield, DollarSign, Calendar, Video, User, ArrowRight, Building, Award, Briefcase, FileText, PieChart, Heart, Activity } from 'lucide-react';
 
 const DocHome = () => {
   return (
     <div className="font-sans bg-gray-50 text-gray-800">
-      {/* Header/Navigation would go here */}
       
-      {/* Hero Section - Updated with more sophisticated design */}
+      {/* Hero Section */}
       <section className="bg-gradient-to-r from-teal-600 to-emerald-800 text-white py-24 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-pattern opacity-10"></div>
         <div className="max-w-6xl mx-auto relative z-10">
@@ -84,7 +62,7 @@ const DocHome = () => {
         </div>
       </section>
 
-      {/* Why Join Section - Redesigned */}
+      {/* Why Join Section */}
       <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -213,7 +191,7 @@ const DocHome = () => {
         </div>
       </section>
 
-      {/* How It Works Section - Updated */}
+      {/* How It Works Section */}
       <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -353,7 +331,7 @@ const DocHome = () => {
         </div>
       </section>
 
-      {/* Testimonials Section - Redesigned */}
+      {/* Testimonials Section */}
       <section className="py-20 px-4 bg-gray-50 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-16">
@@ -512,7 +490,7 @@ const DocHome = () => {
         </div>
       </section>
 
-      {/* CTA Section - Updated */}
+      {/* CTA Section*/}
       <section className="py-20 px-4 bg-gradient-to-r from-teal-700 to-emerald-900 text-white relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h5 className="text-emerald-200 font-medium mb-2">JOIN OUR TEAM</h5>

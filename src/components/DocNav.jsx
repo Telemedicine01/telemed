@@ -40,10 +40,10 @@ const DocNav = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center group">
-            <div className="h-8 w-8 bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+            <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
               <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
             </div>
-            <span className="ml-2 text-blue-900 font-bold text-xl tracking-tight">
+            <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
               TeleHealth MD
             </span>
           </Link>
@@ -61,7 +61,7 @@ const DocNav = () => {
                 placeholder="Search patients, appointments, records..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 text-sm outline-none transition-all"
+                className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-gray-50 text-sm outline-none transition-all"
               />
             </div>
           </form>
@@ -71,11 +71,11 @@ const DocNav = () => {
         <div className="flex items-center space-x-4">
           {/* Quick Actions */}
           <Link to="/doc/docappointments" className="hidden md:flex p-2 rounded-full hover:bg-gray-100 transition-colors relative" title="Appointments">
-            <Calendar className="h-5 w-5 text-blue-600" />
+            <Calendar className="h-5 w-5 text-teal-600" />
           </Link>
           
           <Link to="/doc/mypatients" className="hidden md:flex p-2 rounded-full hover:bg-gray-100 transition-colors relative" title="Patient Records">
-            <Clipboard className="h-5 w-5 text-blue-600" />
+            <Clipboard className="h-5 w-5 text-teal-600" />
           </Link>
 
           {/* Notifications */}
@@ -107,7 +107,7 @@ const DocNav = () => {
                     notifications.map((notification) => (
                       <div 
                         key={notification.id}
-                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${!notification.read ? 'bg-blue-50' : ''}`}
+                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${!notification.read ? 'bg-teal-50' : ''}`}
                         onClick={() => markAsRead(notification.id)}
                       >
                         <p className="text-sm text-gray-700">{notification.text}</p>
@@ -117,7 +117,7 @@ const DocNav = () => {
                   )}
                 </div>
                 <div className="p-2 border-t border-gray-100 bg-gray-50">
-                  <button className="w-full text-center text-sm text-blue-600 hover:text-blue-800 font-medium py-1">
+                  <button className="w-full text-center text-sm text-teal-600 hover:text-teal-800 font-medium py-1">
                     View all notifications
                   </button>
                 </div>
@@ -132,7 +132,7 @@ const DocNav = () => {
 
           {/* User Profile */}
           <Link to="/doc/docprofile" className="flex items-center hover:bg-gray-50 rounded-full p-1 transition-colors">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-r from-indigo-500 to-blue-600 flex items-center justify-center text-white text-sm font-medium">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 flex items-center justify-center text-white text-sm font-medium">
             <User className="h-5 w-5 text-white"/>
             </div>
             <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">Dr. Smith</span>

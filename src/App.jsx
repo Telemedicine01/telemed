@@ -19,48 +19,53 @@ import PatProfile from "./pages/patient/PatProfile";
 import Appointments from "./pages/doctor/Appointments";
 import DocChat from "./pages/doctor/DocChat";
 import PatChat from "./pages/patient/PatChat";
+import PatDash from "./pages/patient/PatDash";
 import AllPatients from "./pages/doctor/AllPatients";
 import DocDash from "./pages/doctor/DocDash";
+import PatMessages from "./pages/patient/PatMessages";
+import PatInfo from "./pages/doctor/PatInfo";
 
 function App() {
   return (
     <BrowserRouter>
-  <Routes>
-    {/* Root public layout */}
-    <Route path="/" element={<RootLayout />}>
-      <Route index element={<Home />} /> 
-      <Route path="services" element={<Services />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="about" element={<About />} />
-    </Route>
+      <Routes>
+        {/* Root public layout */}
+        <Route path="/" element={<RootLayout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="about" element={<About />} />
+        </Route>
 
-    {/* Auth pages */}
-    <Route path="/login" element={<Login />} />
-    <Route path="/signup" element={<Signup />} />
+        {/* Auth pages */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-    {/* Doctor dashboard */}
-    <Route path="/doc" element={<DocLayout />}>
-    <Route index element={<DocHome />} /> 
-      <Route path="docdash" element={<DocDash />} />
-      <Route path="docprofile" element={<DocProfile />} />
-      <Route path="create-post" element={<CreatePost />} />
-      <Route path="myposts" element={<MyPosts />} />
-      <Route path="docappointments" element={<Appointments />} />
-      <Route path="docchat" element={<DocChat />} />
-      <Route path="mypatients" element={<AllPatients />} />
-    </Route>
+        {/* Doctor dashboard */}
+        <Route path="/doc" element={<DocLayout />}>
+          <Route index element={<DocHome />} />
+          <Route path="docdash" element={<DocDash />} />
+          <Route path="docprofile" element={<DocProfile />} />
+          <Route path="create-post" element={<CreatePost />} />
+          <Route path="myposts" element={<MyPosts />} />
+          <Route path="docappointments" element={<Appointments />} />
+          <Route path="docchat" element={<DocChat />} />
+          <Route path="mypatients" element={<AllPatients />} />
+          <Route path="patinfo" element={<PatInfo />} />
+        </Route>
 
-    {/* Patient dashboard */}
-    <Route path="/patient" element={<PatLayout />}>
-      <Route path="pathome" element={<PatHome />} />
-      <Route path="feed" element={<Feed />} />
-      <Route path="appointments" element={<MyAppointments />} />
-      <Route path="patprofile" element={<PatProfile />} />
-      <Route path="patchat" element={<PatChat />} />
-    </Route>
-  </Routes>
-</BrowserRouter>
-
+        {/* Patient dashboard */}
+        <Route path="/patient" element={<PatLayout />}>
+          <Route index element={<PatHome />} />
+          <Route path="feed" element={<Feed />} />
+          <Route path="appointments" element={<MyAppointments />} />
+          <Route path="patprofile" element={<PatProfile />} />
+          <Route path="patchat" element={<PatChat />} />
+          <Route path="patdash" element={<PatDash />} />
+          <Route path="patmessages" element={<PatMessages />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
