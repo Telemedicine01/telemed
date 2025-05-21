@@ -7,3 +7,22 @@ export const apiCreatePost = async (payload) => {
       },
     });
   };
+
+  export const apiGetAllAppointments = async () => apiClient.get("/appointments");
+
+export const apiGetPost = async () => apiClient.get("/");
+
+export const apiPostById = async (id) =>
+  apiClient.get(`/feed/${id}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+export const apiUpdate = async (id, payload) =>
+  apiClient.patch(`/adverts/${id}`, payload);
+
+export const apiGetSinglePost = async (id) => apiClient.get(`/adverts/${id}`);
+
+export const apiDeleteVendorPosttById = async (id) =>
+  apiClient.delete(`/adverts/${id}`);

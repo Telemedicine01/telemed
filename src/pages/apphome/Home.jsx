@@ -34,12 +34,12 @@ function Home() {
         <div className="absolute inset-0 bg-gray-900 opacity-90 z-0">
           <img 
             src={hospitalBuilding} 
-            alt="City Hospital" 
+            alt="Love Hospital" 
             className="w-full h-full object-cover opacity-30"
           />
         </div>
 
-        <div className="w-full md:w-1/2 flex flex-col justify-center p-8 sm:p-12 lg:p-16 xl:p-24 relative z-10">
+        <div className="w-full md:w-1/2 flex flex-col justify-center p-20 sm:p-20 lg:p-20 xl:p-24 relative z-10">
           <div className="flex items-center mb-4">
             <Building className="w-6 h-6 text-teal-400 mr-2" />
             <span className="text-teal-400 font-medium">LOVE HOSPITAL</span>
@@ -53,10 +53,10 @@ function Home() {
           </p>
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
-              to="/find-a-doctor" 
+              to="/signup" 
               className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-all duration-300"
             >
-              Find a Specialist
+              Sign Up
             </Link>
           </div>
         </div>
@@ -296,7 +296,7 @@ function Home() {
         
         <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
           <Link 
-            to="/chatbot" 
+            to="/chatbox" 
             className="inline-flex items-center justify-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-all duration-300"
           >
             Try Our Health Assistant
@@ -577,7 +577,7 @@ function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link 
-              to="/appointmentS" 
+              to="/appointments" 
               className="inline-block px-8 py-3 bg-white hover:bg-gray-100 text-teal-600 font-medium rounded-lg shadow-md transition-all duration-300"
             >
               Book an Appointment
@@ -587,12 +587,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Global Styles */}
-      <style jsx global>{`
-        body {
-          background-color: #f9fafb;
-        }
-      `}</style>
+      
     </div>
   );
 }

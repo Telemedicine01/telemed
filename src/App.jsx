@@ -24,6 +24,8 @@ import AllPatients from "./pages/doctor/AllPatients";
 import DocDash from "./pages/doctor/DocDash";
 import PatMessages from "./pages/patient/PatMessages";
 import PatInfo from "./pages/doctor/PatInfo";
+import BookAppointment from "./pages/patient/BookAppointment";
+import Chatbox from "./components/Chatbox";
 
 function App() {
   return (
@@ -35,6 +37,7 @@ function App() {
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
+          <Route path="chatbox" element={<Chatbox />} />
         </Route>
 
         {/* Auth pages */}
@@ -59,6 +62,7 @@ function App() {
           <Route index element={<PatHome />} />
           <Route path="feed" element={<Feed />} />
           <Route path="appointments" element={<MyAppointments />} />
+          <Route path="bkappointment" element={<BookAppointment />} />
           <Route path="patprofile" element={<PatProfile />} />
           <Route path="patchat" element={<PatChat />} />
           <Route path="patdash" element={<PatDash />} />

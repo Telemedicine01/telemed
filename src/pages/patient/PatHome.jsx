@@ -18,6 +18,7 @@ import {
   Star
 } from 'lucide-react';
 import { useState } from 'react';
+import Chatbox from '../../components/Chatbox';
 
 const PatHome = () => {
   const [chatbotOpen, setChatbotOpen] = useState(false);
@@ -516,7 +517,8 @@ const PatHome = () => {
       {/* AI Chatbot Section */}
       <div className="fixed bottom-6 right-6 z-50">
       {/* Chatbot Toggle Button */}
-  <button 
+ <Chatbox/>
+ <button 
     onClick={() => setChatbotOpen(!chatbotOpen)}
     className="bg-teal-600 hover:bg-teal-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 flex items-center"
   >
@@ -526,84 +528,8 @@ const PatHome = () => {
     <span className="ml-2 font-medium">Health Assistant</span>
   </button>
 
-  {/* Chatbot Container - Only shown when open */}
-  {chatbotOpen && (
-    <div className="absolute bottom-full left-0 mb-4 w-80 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden">
-      {/* Chatbot Header */}
-      <div className="bg-teal-600 text-white p-4 flex justify-between items-center">
-        <div className="flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-          </svg>
-          <h3 className="font-semibold">Confidential Health Assistant</h3>
-        </div>
-        <button 
-          onClick={() => setChatbotOpen(false)}
-          className="text-teal-100 hover:text-white"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
 
-      {/* Chatbot Content */}
-      <div className="p-4 border-b border-gray-200 bg-gray-50">
-        <div className="flex items-end mb-4">
-          <div className="bg-teal-100 p-2 rounded-full mr-3">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-          </div>
-          <div className="bg-white p-3 rounded-lg shadow-xs max-w-xs">
-            <p className="text-sm text-gray-700">
-              Hello, I'm Love Hospital's AI assistant. I can help answer general health questions. 
-              <span className="block mt-1 font-medium text-teal-600">How can I help you today?</span>
-            </p>
-          </div>
-        </div>
-
-        {/* Sexual Abuse Support Message */}
-        <div className="bg-pink-50 border-l-4 border-pink-400 p-3 rounded-r-lg mb-4">
-          <div className="flex">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-pink-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <div>
-              <p className="text-xs text-pink-800 font-medium">
-                If you've experienced sexual abuse or assault, you can speak with me anonymously or be connected immediately with our specialized support team.
-              </p>
-              <button className="mt-2 text-xs text-pink-600 font-semibold hover:text-pink-800 flex items-center">
-                Get confidential help now
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Chatbot Input */}
-      <div className="p-3 bg-gray-50">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Type your message..."
-            className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-          />
-          <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-teal-600 hover:text-teal-800">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
-          </button>
-        </div>
-        <p className="text-xs text-gray-500 mt-2 text-center">
-          For emergencies, please call 911 or your local emergency number.
-        </p>
-      </div>
-    </div>
-  )}
+  
 </div>
 
 {/* Sexual Abuse Support Section in Main Content */}

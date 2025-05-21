@@ -14,6 +14,7 @@ import {
   XCircle,
   PlusCircle
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
@@ -100,11 +101,6 @@ const MyAppointments = () => {
     setExpandedAppointment(expandedAppointment === id ? null : id);
   };
 
-  // Book new appointment
-  const bookAppointment = () => {
-    // In a real app, you would navigate to booking page or open a modal
-    console.log('Booking new appointment');
-  };
 
   // Cancel appointment
   const cancelAppointment = (id) => {
@@ -119,18 +115,20 @@ const MyAppointments = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              <Calendar className="h-5 w-5 mr-2 text-teal-600 inline"/> 
+              <Calendar className="h-5 w-5 mr-2 text-blue-600 inline"/> 
               My Appointments
             </h1>
             <p className="text-gray-500">View and manage your scheduled visits</p>
           </div>
+          
+          <Link to = "/patient/bkappointment">
           <button 
-            onClick={bookAppointment}
-            className="flex items-center justify-center px-4 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
+            className="flex items-center justify-center px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-sm"
           >
             <PlusCircle className="h-5 w-5 mr-2" />
             New Appointment
           </button>
+             </Link>
         </div>
 
         {/* Main card */}
@@ -143,7 +141,7 @@ const MyAppointments = () => {
                 onClick={() => setActiveTab('upcoming')} 
                 className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors duration-200 ${
                   activeTab === 'upcoming' 
-                    ? 'border-teal-500 text-teal-600' 
+                    ? 'border-blue-500 text-blue-600' 
                     : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -153,7 +151,7 @@ const MyAppointments = () => {
                 onClick={() => setActiveTab('past')} 
                 className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors duration-200 ${
                   activeTab === 'past' 
-                    ? 'border-teal-500 text-teal-600' 
+                    ? 'border-blue-500 text-blue-600' 
                     : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
               >
@@ -201,8 +199,8 @@ const MyAppointments = () => {
                     <div className="flex flex-col md:flex-row md:items-center gap-4">
                       {/* Doctor info */}
                       <div className="flex items-center flex-1 min-w-0">
-                        <div className="flex-shrink-0 h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
-                          <User className="h-5 w-5 text-teal-600" />
+                        <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                          <User className="h-5 w-5 text-blue-600" />
                         </div>
                         <div className="ml-4 min-w-0">
                           <h3 className="text-lg font-semibold text-gray-900 truncate">{appointment.doctorName}</h3>
@@ -259,7 +257,7 @@ const MyAppointments = () => {
                             <div className="flex items-start">
                               {appointment.isVirtual ? (
                                 <>
-                                  <Video className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
+                                  <Video className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
                                   <div>
                                     <p className="text-sm text-gray-700">Virtual Appointment</p>
                                     <p className="text-xs text-gray-500 mt-1">Link will be sent prior to appointment</p>
@@ -267,7 +265,7 @@ const MyAppointments = () => {
                                 </>
                               ) : (
                                 <>
-                                  <MapPin className="h-5 w-5 text-teal-500 mr-2 mt-0.5" />
+                                  <MapPin className="h-5 w-5 text-blue-500 mr-2 mt-0.5" />
                                   <p className="text-sm text-gray-700">{appointment.location}</p>
                                 </>
                               )}
@@ -292,7 +290,7 @@ const MyAppointments = () => {
                               Cancel Appointment
                             </button>
                           )}
-                          <button className="flex items-center px-3 py-1.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 text-sm font-medium">
+                          <button className="flex items-center px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm font-medium">
                             <CheckCircle className="h-4 w-4 mr-1.5" />
                             Reschedule
                           </button>
@@ -313,13 +311,14 @@ const MyAppointments = () => {
                     ? 'You have no upcoming appointments scheduled.' 
                     : 'No past appointments found for this period.'}
                 </p>
-                <button 
-                  onClick={bookAppointment}
-                  className="mt-4 inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
+             <Link to = "/patient/bkappointment">
+             <button 
+                  className="mt-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-sm"
                 >
                   <PlusCircle className="h-5 w-5 mr-2" />
                   Schedule New Appointment
                 </button>
+             </Link>
               </div>
             )}
           </div>

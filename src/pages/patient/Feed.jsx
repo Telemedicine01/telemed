@@ -11,80 +11,7 @@ import {
   Loader2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-// Mock data - replace with API calls in production
-const mockArticles = [
-  {
-    id: '1',
-    title: 'Understanding Heart Disease: Prevention and Management',
-    excerpt: 'Learn about the risk factors for heart disease and practical steps you can take to maintain cardiovascular health.',
-    category: 'Cardiology',
-    readingTime: '8 min read',
-    likes: 89,
-    publishedAt: '2023-10-15T09:30:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-    author: {
-      name: 'Dr. Sarah Johnson',
-      specialty: 'Cardiologist'
-    }
-  },
-  {
-    id: '2',
-    title: 'Pediatric Nutrition: Building Healthy Habits Early',
-    excerpt: 'Essential nutrition guidelines for children and how to establish lifelong healthy eating patterns.',
-    category: 'Pediatrics',
-    readingTime: '6 min read',
-    likes: 45,
-    publishedAt: '2023-09-28T14:15:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-    author: {
-      name: 'Dr. Michael Chen',
-      specialty: 'Pediatrician'
-    }
-  },
-  {
-    id: '3',
-    title: 'Managing Stress and Anxiety in Modern Life',
-    excerpt: 'Evidence-based strategies to cope with daily stressors and improve your mental wellbeing.',
-    category: 'Mental Health',
-    readingTime: '10 min read',
-    likes: 112,
-    publishedAt: '2023-11-05T16:45:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1494412651409-8963ce7935a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-    author: {
-      name: 'Dr. Emily Wilson',
-      specialty: 'Psychiatrist'
-    }
-  },
-  {
-    id: '4',
-    title: 'Women\'s Health: Annual Checkups You Shouldn\'t Skip',
-    excerpt: 'A guide to essential health screenings and preventive care for women at every age.',
-    category: 'Women\'s Health',
-    readingTime: '7 min read',
-    likes: 67,
-    publishedAt: '2023-11-10T10:20:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1516542076529-1ea3854896f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-    author: {
-      name: 'Dr. Lisa Rodriguez',
-      specialty: 'OB-GYN'
-    }
-  },
-  {
-    id: '5',
-    title: 'The Importance of Vaccinations for Adults',
-    excerpt: 'Why immunizations aren\'t just for children - staying up-to-date with vaccines as an adult.',
-    category: 'Preventive Care',
-    readingTime: '5 min read',
-    likes: 53,
-    publishedAt: '2023-08-22T08:10:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-    author: {
-      name: 'Dr. James Peterson',
-      specialty: 'Internal Medicine'
-    }
-  }
-];
+import axios from 'axios';
 
 const categoryStyles = {
   'Cardiology': 'bg-rose-100 text-rose-800',
@@ -105,17 +32,19 @@ const Feed = () => {
     sortBy: 'newest'
   });
   const [showFilters, setShowFilters] = useState(false);
-  const [assistantOpen, setAssistantOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [chatMessages, setChatMessages] = useState([
-    { sender: 'assistant', text: 'Hello! How can I help you with health questions today?', time: 'Just now' }
-  ]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        await new Promise(resolve => setTimeout(resolve, 800));
-        setArticles(mockArticles);
+        const response = await axios.get('YOUR_API_ENDPOINT');
+        console.log('API Response:', response.data); // Log the response
+        if (Array.isArray(response.data)) {
+          setArticles(response.data); // Assuming articles are directly in the response
+        } else if (response.data.articles) {
+          setArticles(response.data.articles); // Adjust according to your API structure
+        } else {
+          console.error('Unexpected data structure:', response.data);
+        }
       } catch (error) {
         console.error('Error fetching articles:', error);
       } finally {
@@ -141,38 +70,6 @@ const Feed = () => {
     }
     return 0;
   });
-
-  const handleSendMessage = () => {
-    if (!message.trim()) return;
-    
-    // Add user message
-    const newUserMessage = {
-      sender: 'user',
-      text: message,
-      time: 'Just now'
-    };
-    
-    setChatMessages(prev => [...prev, newUserMessage]);
-    setMessage('');
-    
-    // Simulate assistant response after a delay
-    setTimeout(() => {
-      const responses = [
-        "I found some helpful information about that in our health library.",
-        "That's an important question. Here's what medical experts recommend...",
-        "Would you like me to find articles about this topic?",
-        "Based on current guidelines, the recommendation is..."
-      ];
-      
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      
-      setChatMessages(prev => [...prev, {
-        sender: 'assistant',
-        text: randomResponse,
-        time: 'Just now'
-      }]);
-    }, 1000);
-  };
 
   const resetFilters = () => {
     setFilters({
@@ -354,65 +251,6 @@ const Feed = () => {
           </div>
         )}
       </main>
-
-      {/* Health Assistant Bubble */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {assistantOpen ? (
-          <div className="w-80 bg-white rounded-t-xl shadow-xl overflow-hidden">
-            <div 
-              className="bg-teal-600 text-white p-4 flex justify-between items-center cursor-pointer"
-              onClick={() => setAssistantOpen(false)}
-            >
-              <h3 className="font-medium">Health Assistant</h3>
-              <ChevronDown className="h-5 w-5" />
-            </div>
-            
-            <div className="h-96 overflow-y-auto p-4 space-y-4">
-              {chatMessages.map((msg, index) => (
-                <div 
-                  key={index} 
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div 
-                    className={`max-w-xs p-3 rounded-lg ${msg.sender === 'user' 
-                      ? 'bg-teal-100 text-gray-800' 
-                      : 'bg-gray-100 text-gray-800'}`}
-                  >
-                    <p className="text-sm">{msg.text}</p>
-                    <p className="text-xs text-gray-500 mt-1">{msg.time}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="border-t border-gray-200 p-3">
-              <div className="flex">
-                <input
-                  type="text"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  placeholder="Ask a health question..."
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                />
-                <button
-                  onClick={handleSendMessage}
-                  className="px-4 py-2 bg-teal-600 text-white rounded-r-lg hover:bg-teal-700"
-                >
-                  <MessageSquare className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <button
-            onClick={() => setAssistantOpen(true)}
-            className="bg-teal-600 text-white p-4 rounded-full shadow-lg hover:bg-teal-700"
-          >
-            <MessageSquare className="h-6 w-6" />
-          </button>
-        )}
-      </div>
     </div>
   );
 };
