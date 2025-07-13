@@ -24,6 +24,10 @@ import AllPatients from "./pages/doctor/AllPatients";
 import DocDash from "./pages/doctor/DocDash";
 import PatMessages from "./pages/patient/PatMessages";
 import PatInfo from "./pages/doctor/PatInfo";
+import BookAppointment from "./pages/patient/BookAppointment";
+import Chatbox from "./components/Chatbox";
+import Anonymous from "./pages/apphome/Anonymous";
+import AllDocs from "./pages/patient/AllDocs";
 
 function App() {
   return (
@@ -35,11 +39,14 @@ function App() {
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
-        </Route>
-
-        {/* Auth pages */}
+          <Route path="anonymous" element={<Anonymous />} />
+          <Route path="chatbox" element={<Chatbox />} />
+            {/* Auth pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        </Route>
+
+      
 
         {/* Doctor dashboard */}
         <Route path="/doc" element={<DocLayout />}>
@@ -59,7 +66,9 @@ function App() {
           <Route index element={<PatHome />} />
           <Route path="feed" element={<Feed />} />
           <Route path="appointments" element={<MyAppointments />} />
+          <Route path="bkappointment" element={<BookAppointment />} />
           <Route path="patprofile" element={<PatProfile />} />
+          <Route path="alldocs" element={<AllDocs />} />
           <Route path="patchat" element={<PatChat />} />
           <Route path="patdash" element={<PatDash />} />
           <Route path="patmessages" element={<PatMessages />} />

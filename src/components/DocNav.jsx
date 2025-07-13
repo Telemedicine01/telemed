@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search, Bell, MessageSquare, Plus, Calendar, Clipboard, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png"
 
 const DocNav = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -40,12 +41,9 @@ const DocNav = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center group">
-            <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
-              <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
+            <div className="h-20 w-20 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+              <img src={logo} alt="logo" />
             </div>
-            <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
-              TeleHealth MD
-            </span>
           </Link>
         </div>
 
@@ -135,7 +133,7 @@ const DocNav = () => {
             <div className="h-8 w-8 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 flex items-center justify-center text-white text-sm font-medium">
             <User className="h-5 w-5 text-white"/>
             </div>
-            <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">Dr. Smith</span>
+            <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">Dr. Parker</span>
           </Link>
         </div>
       </div>

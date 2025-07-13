@@ -22,6 +22,7 @@ import {
   Pill,
   AlertCircle,
 } from "lucide-react";
+import patprof from "../../assets/images/patprof.jpeg"
 
 const PatProfile = () => {
   return (
@@ -33,7 +34,7 @@ const PatProfile = () => {
             <div className="relative">
               <div className="w-32 h-32 rounded-full bg-teal-300 overflow-hidden border-4 border-white shadow-lg">
                 <img
-                  src="/api/placeholder/150/150"
+                  src={patprof}
                   alt="Patient profile"
                   className="w-full h-full object-cover"
                 />
@@ -43,7 +44,7 @@ const PatProfile = () => {
               </div>
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl font-bold">John Doe</h1>
+              <h1 className="text-3xl font-bold">John Asante</h1>
               <p className="text-teal-200">Patient</p>
               <div className="flex items-center space-x-2 mt-2">
                 <Clipboard className="w-4 h-4 text-teal-200" />
@@ -161,7 +162,7 @@ const PatProfile = () => {
                     <input
                       type="email"
                       className="flex-1 outline-none text-gray-800"
-                      defaultValue="john.doe@example.com"
+                      defaultValue="john.asante@example.com"
                     />
                   </div>
                 </div>
@@ -212,7 +213,7 @@ const PatProfile = () => {
                   <input
                     type="text"
                     className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
-                    defaultValue="Jane Doe"
+                    defaultValue="Ama Asante"
                   />
                 </div>
                 <div>

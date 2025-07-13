@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown, Plus } from "lucide-react";
 import { Link } from "react-router";
+import logo from "../assets/images/logo.png";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,12 +40,9 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <a href="/home" className="flex items-center group">
-              <div className="h-9 w-9 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
-                <Plus className="text-white w-5 h-5" strokeWidth={2.5} />
+              <div className="h-18 w-18 rounded-full flex items-center justify-center group-hover:rotate-15 transition-transform duration-300">
+                <img src={logo} alt="logo" />
               </div>
-              <span className="ml-3 text-teal-900 font-bold text-xl md:text-2xl tracking-tight">
-                TeleHealth
-              </span>
             </a>
           </div>
 

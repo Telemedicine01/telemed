@@ -14,6 +14,7 @@ import {
   XCircle,
   PlusCircle
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const MyAppointments = () => {
   const [activeTab, setActiveTab] = useState('upcoming');
@@ -100,11 +101,6 @@ const MyAppointments = () => {
     setExpandedAppointment(expandedAppointment === id ? null : id);
   };
 
-  // Book new appointment
-  const bookAppointment = () => {
-    // In a real app, you would navigate to booking page or open a modal
-    console.log('Booking new appointment');
-  };
 
   // Cancel appointment
   const cancelAppointment = (id) => {
@@ -124,13 +120,15 @@ const MyAppointments = () => {
             </h1>
             <p className="text-gray-500">View and manage your scheduled visits</p>
           </div>
+          
+          <Link to = "/patient/bkappointment">
           <button 
-            onClick={bookAppointment}
             className="flex items-center justify-center px-4 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
           >
             <PlusCircle className="h-5 w-5 mr-2" />
             New Appointment
           </button>
+             </Link>
         </div>
 
         {/* Main card */}
@@ -313,13 +311,14 @@ const MyAppointments = () => {
                     ? 'You have no upcoming appointments scheduled.' 
                     : 'No past appointments found for this period.'}
                 </p>
-                <button 
-                  onClick={bookAppointment}
+             <Link to = "/patient/bkappointment">
+             <button 
                   className="mt-4 inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
                 >
                   <PlusCircle className="h-5 w-5 mr-2" />
                   Schedule New Appointment
                 </button>
+             </Link>
               </div>
             )}
           </div>

@@ -21,6 +21,8 @@ import {
   X,
   IdCard,
 } from "lucide-react";
+import smilingdoc5 from "../../assets/images/smilingdoc5.jpeg";
+
 
 const DocProfile = () => {
   return (
@@ -32,7 +34,7 @@ const DocProfile = () => {
             <div className="relative">
               <div className="w-32 h-32 rounded-full bg-teal-300 overflow-hidden border-4 border-white shadow-lg">
                 <img
-                  src="/api/placeholder/150/150"
+                  src={smilingdoc5}
                   alt="Doctor profile"
                   className="w-full h-full object-cover"
                 />
@@ -42,7 +44,7 @@ const DocProfile = () => {
               </div>
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl font-bold">Dr. Sarah Miller</h1>
+              <h1 className="text-3xl font-bold">Dr. Patience Parker</h1>
               <p className="text-teal-200">OB/GYN Specialist</p>
               <div className="flex items-center space-x-2 mt-2">
                 <IdCard className="w-4 h-4 text-teal-200" />
@@ -106,7 +108,7 @@ const DocProfile = () => {
                     <input
                       type="email"
                       className="flex-1 outline-none text-gray-800"
-                      defaultValue="dr.miller@lovehospital.com"
+                      defaultValue="dr.parker@lovehospital.com"
                     />
                   </div>
                 </div>

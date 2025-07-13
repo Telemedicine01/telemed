@@ -20,6 +20,41 @@ const Appointments = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [expandedAppointment, setExpandedAppointment] = useState(null);
 
+  const appointments = [
+    {
+      id: 1,
+      patientName: 'John Doe',
+      time: '10:00 AM',
+      type: 'Consultation',
+      status: 'Upcoming',
+      date: new Date(),
+    },
+    {
+      id: 2,
+      patientName: 'Jane Smith',
+      time: '2:30 PM',
+      type: 'Follow-up',
+      status: 'Past',
+      date: new Date(new Date().setDate(new Date().getDate() - 1)), // yesterday
+    },
+    {
+      id: 3,
+      patientName: 'Alex Johnson',
+      time: '1:00 PM',
+      type: 'Check-up',
+      status: 'Upcoming',
+      date: new Date(),
+    },
+    {
+      id: 4,
+      patientName: 'Emily Davis',
+      time: '4:00 PM',
+      type: 'Consultation',
+      status: 'Past',
+      date: new Date(new Date().setDate(new Date().getDate() - 5)), // 5 days ago
+    },
+  ];
+
   const formatDate = (date) => {
     return date.toLocaleDateString('en-US', { 
       weekday: 'long', 
@@ -47,12 +82,22 @@ const Appointments = () => {
     console.log('Booking new appointment');
   };
 
+  const filteredAppointments = appointments.filter(app => {
+    if (activeTab === 'upcoming') {
+      return app.status === 'Upcoming';
+    } else if (activeTab === 'past') {
+      return app.status === 'Past';
+    } else {
+      return true; // all appointments
+    }
+  });
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900"><Calendar className="h-5 w-5 mr-2 text-teal-600"/> Appointment Management</h1>
+            <h1 className="text-2xl font-bold text-gray-900 flex items-center"><Calendar className="h-5 w-5 mr-2 text-teal-600"/> Appointment Management</h1>
             <p className="text-gray-500">View and manage patient appointments</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -88,43 +133,7 @@ const Appointments = () => {
                 <ChevronDown className={`h-5 w-5 ml-2 transition-transform duration-200 ${filterOpen ? 'rotate-180' : ''}`} />
               </button>
             </div>
-            {filterOpen && (
-              <div className="mt-4 pt-4 border-t border-gray-100 space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Appointment Type</label>
-                    <select className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors duration-200">
-                      <option value="">All Types</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Status</label>
-                    <select className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors duration-200">
-                      <option value="">All Status</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">Date Range</label>
-                    <select className="w-full px-3 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors duration-200">
-                      <option value="today">Today</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="flex justify-end space-x-3">
-                  <button 
-                    onClick={() => setFilterOpen(false)}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors duration-200"
-                  >
-                    Cancel
-                  </button>
-                  <button 
-                    className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200"
-                  >
-                    Apply Filters
-                  </button>
-                </div>
-              </div>
-            )}
+            {/* No filter form used yet */}
           </div>
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-100">
@@ -168,6 +177,35 @@ const Appointments = () => {
               </div>
             </div>
           </div>
+
+          {/* Appointments List */}
+          <div className="divide-y divide-gray-100">
+            {filteredAppointments.map(appointment => (
+              <div key={appointment.id} className="flex flex-col md:flex-row md:items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors">
+                <div>
+                  <h3 className="font-medium text-gray-900">{appointment.patientName}</h3>
+                  <div className="flex items-center text-sm text-gray-500 mt-1">
+                    <Clock className="h-4 w-4 mr-1" /> {appointment.time} • {appointment.type}
+                  </div>
+                </div>
+                <div className="mt-3 md:mt-0 flex items-center gap-3">
+                  <button onClick={() => toggleAppointmentDetails(appointment.id)} className="text-sm text-teal-600 hover:underline">
+                    {expandedAppointment === appointment.id ? 'Hide Details' : 'View Details'}
+                  </button>
+                  <button onClick={() => approveAppointment(appointment.id)} className="flex items-center bg-teal-100 text-teal-700 px-3 py-1.5 rounded-lg hover:bg-teal-200 transition-colors text-sm">
+                    <CheckCircle className="h-4 w-4 mr-1" /> Approve
+                  </button>
+                </div>
+                {expandedAppointment === appointment.id && (
+                  <div className="mt-3 text-sm text-gray-700">
+                    <p>Date: {formatDate(appointment.date)}</p>
+                    <p>Status: {appointment.status}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </div>

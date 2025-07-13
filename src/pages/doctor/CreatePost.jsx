@@ -15,6 +15,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import axios from "axios";
+import { apiClient } from "../../services/config";
 
 const CreatePost = () => {
   const categories = [
@@ -49,8 +50,8 @@ const CreatePost = () => {
     const formData = new FormData(event.target); // fix 2: move this up
 
     try {
-      const res = await axios.post(
-        "https://telemedicine-api-09u5.onrender.com/articles",
+      const res = await apiClient.post(
+        "/articles",
         formData
       );
       console.log(res.data);
@@ -111,7 +112,7 @@ const CreatePost = () => {
           </label>
           <textarea
             id="content"
-            name="content"
+            name="article"
             rows={12}
             className="block w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-1 focus:ring-teal-500 focus:border-teal-500"
             placeholder="Write your article content here..."
@@ -215,7 +216,7 @@ const CreatePost = () => {
               </div>
               <input
                 id="attachments"
-                type="file"
+                type="image"
                 className="hidden"
                 multiple
                 accept="image/*,video/*,.pdf"
@@ -224,7 +225,7 @@ const CreatePost = () => {
           </div>
         </div>
 
-        {/* Disclaimer */}
+        {/* Disclaimer
         <div className="space-y-4">
           <div className="flex items-start">
             <div className="flex items-center h-5">
@@ -246,7 +247,7 @@ const CreatePost = () => {
               </ul>
             </label>
           </div>
-        </div>
+        </div> */}
 
         {/* Submit Button */}
         <div className="pt-4">

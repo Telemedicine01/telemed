@@ -1,6 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Home, Activity, Calendar, User, ChevronLeft, Menu, MessageSquare, Plus, Settings, LogOut } from "lucide-react";
+import {
+  Home,
+  Activity,
+  Calendar,
+  User,
+  ChevronLeft,
+  Menu,
+  MessageSquare,
+  Plus,
+  Settings,
+  LogOut,
+} from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const PatientSidebar = ({ navLinks = [] }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -48,28 +60,29 @@ const PatientSidebar = ({ navLinks = [] }) => {
       color: "text-teal-500",
     },
     {
+      path: "/patient/patprofile",
+      icon: User,
+      label: "Profile",
+      color: "text-teal-500",
+    },
+    {
       path: "/patient/feed",
       icon: Activity,
       label: "Health Feed",
       color: "text-teal-500",
-    },    
+    },
     {
       path: "/patient/appointments",
       icon: Calendar,
       label: "Appointments",
-      color: "text-purple-500",
+      color: "text-teal-500",
     },
-    {
-      path: "/patient/patprofile",
-      icon: User,
-      label: "Profile",
-      color: "text-pink-500",
-    },
+   
     {
       path: "/patient/patmessages",
       icon: MessageSquare,
       label: "Messages",
-      color: "text-amber-500",
+      color: "text-teal-500",
     },
   ];
 
@@ -110,12 +123,8 @@ const PatientSidebar = ({ navLinks = [] }) => {
         >
           {!isCollapsed && (
             <Link to="/" className="flex items-center group">
-              <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
-                <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
-              </div>
-              <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
-                TeleHealth
-              </span>
+              <img className="h-20 w-30 flex items-center justify-between" src={logo} alt="logo" />
+              <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight"></span>
             </Link>
           )}
           {isCollapsed && (
@@ -205,10 +214,10 @@ const PatientSidebar = ({ navLinks = [] }) => {
           <div className="p-4 border-t">
             <Link to="/patient/patprofile" className="flex items-center">
               <div className="h-10 w-10 rounded-full bg-gradient-to-r from-teal-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
-                <User className="h-5 w-5 text-white"/>
+                <User className="h-5 w-5 text-white" />
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-800">Ama Asante</p>
+                <p className="text-sm font-medium text-gray-800">John Asante</p>
               </div>
             </Link>
           </div>

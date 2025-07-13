@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search, Bell, MessageSquare, Plus, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 
 const PatNav = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -9,15 +10,15 @@ const PatNav = () => {
     { id: 2, text: "New message from Dr. Johnson", read: false },
     { id: 3, text: "Reminder: Take your medication", read: true },
   ]);
-  
+
   const [showNotifications, setShowNotifications] = useState(false);
-  
-  const unreadCount = notifications.filter(n => !n.read).length;
-  
+
+  const unreadCount = notifications.filter((n) => !n.read).length;
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     // Implement search functionality here
@@ -29,9 +30,9 @@ const PatNav = () => {
   };
 
   const markAsRead = (id) => {
-    setNotifications(notifications.map(n => 
-      n.id === id ? {...n, read: true} : n
-    ));
+    setNotifications(
+      notifications.map((n) => (n.id === id ? { ...n, read: true } : n))
+    );
   };
 
   return (
@@ -40,12 +41,9 @@ const PatNav = () => {
         {/* Logo */}
         <div className="flex items-center">
           <Link to="/" className="flex items-center group">
-            <div className="h-8 w-8 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
-              <Plus className="text-white w-4 h-4" strokeWidth={2.5} />
+            <div className="h-20 w-20 rounded-full flex items-center justify-center group-hover:rotate-90 transition-transform duration-300">
+              <img src={logo} alt="logo" />
             </div>
-            <span className="ml-2 text-teal-900 font-bold text-xl tracking-tight">
-              TeleHealth
-            </span>
           </Link>
         </div>
 
@@ -71,7 +69,7 @@ const PatNav = () => {
         <div className="flex items-center space-x-4">
           {/* Notifications */}
           <div className="relative">
-            <button 
+            <button
               onClick={toggleNotifications}
               className="p-2 rounded-full hover:bg-gray-100 transition-colors relative"
             >
@@ -82,7 +80,7 @@ const PatNav = () => {
                 </span>
               )}
             </button>
-            
+
             {/* Notification Dropdown */}
             {showNotifications && (
               <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-100 overflow-hidden z-50">
@@ -96,12 +94,16 @@ const PatNav = () => {
                     </div>
                   ) : (
                     notifications.map((notification) => (
-                      <div 
+                      <div
                         key={notification.id}
-                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${!notification.read ? 'bg-teal-50' : ''}`}
+                        className={`p-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer ${
+                          !notification.read ? "bg-teal-50" : ""
+                        }`}
                         onClick={() => markAsRead(notification.id)}
                       >
-                        <p className="text-sm text-gray-700">{notification.text}</p>
+                        <p className="text-sm text-gray-700">
+                          {notification.text}
+                        </p>
                         <p className="text-xs text-gray-500 mt-1">Just now</p>
                       </div>
                     ))
@@ -117,16 +119,24 @@ const PatNav = () => {
           </div>
 
           {/* Messages */}
-          <Link to="/patient/patmessages" className="p-2 rounded-full hover:bg-gray-100 transition-colors">
+          <Link
+            to="/patient/patmessages"
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          >
             <MessageSquare className="h-5 w-5 text-gray-600" />
           </Link>
 
           {/* User Profile */}
-          <Link to="/patient/patprofile" className="flex items-center hover:bg-gray-50 rounded-full p-1 transition-colors">
+          <Link
+            to="/patient/patprofile"
+            className="flex items-center hover:bg-gray-50 rounded-full p-1 transition-colors"
+          >
             <div className="h-8 w-8 rounded-full bg-gradient-to-r from-teal-500 to-teal-500 flex items-center justify-center text-white text-sm font-medium">
-            <User className="h-5 w-5 text-white"/>
+              <User className="h-5 w-5 text-white" />
             </div>
-            <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">Ama</span>
+            <span className="ml-2 text-sm font-medium text-gray-700 mr-1 hidden md:inline">
+             John
+            </span>
           </Link>
         </div>
       </div>
