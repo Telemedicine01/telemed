@@ -39,6 +39,34 @@ function Home() {
   return (
     <div className="font-sans bg-gray-50">
       {/* Hero Section */}
+      <section className="relative flex flex-col md:flex-row min-h-screen bg-white overflow-hidden">
+        <div className="absolute inset-0 bg-gray-900 opacity-90 z-0">
+          <img 
+            src={hospitalBuilding} 
+            alt="Love Hospital" 
+            className="w-full h-full object-cover opacity-30"
+          />
+        </div>
+
+        <div className="w-full md:w-1/2 flex flex-col justify-center p-20 sm:p-20 lg:p-20 xl:p-24 relative z-10">
+          <div className="flex items-center mb-4">
+            <Building className="w-6 h-6 text-teal-400 mr-2" />
+            <span className="text-teal-400 font-medium">LOVE HOSPITAL</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            Exceptional Care <br />
+            <span className="text-teal-300">Where You Matter Most</span>
+          </h1>
+          <p className="text-lg text-gray-300 mb-8">
+            As the region's leading healthcare provider, we combine cutting-edge medicine with compassionate care.
+          </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <Link 
+              to="/signup" 
+              className="px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-lg transition-all duration-300"
+            >
+              Sign Up
+            </Link>
       <section className="relative bg-gradient-to-r from-teal-800 to-teal-600 text-white overflow-hidden">
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 relative z-10">
@@ -420,6 +448,16 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Global Styles */}
+      <style jsx global>{`
+        body {
+          background-color: #f9fafb;
+        }
+      `}</style>
+    </div>
+    </div>
+    </section>
     </div>
   );
 }

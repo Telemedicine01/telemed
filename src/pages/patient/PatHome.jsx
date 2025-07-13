@@ -16,15 +16,9 @@ import {
   MapPin,
   CheckCircle,
   Star,
-  Check,
 } from "lucide-react";
 import { useState } from "react";
 import Chatbox from "../../components/Chatbox";
-import { Link } from "react-router-dom";
-import counseling from "../../assets/images/smilingdoc3.png";
-import hospital from "../../assets/images/hospital.jpeg";
-import smilingpat from "../../assets/images/smilingpat.jpeg";
-import patphone from "../../assets/images/patphone.jpeg"
 
 const PatHome = () => {
   const [chatbotOpen, setChatbotOpen] = useState(false);
@@ -380,7 +374,6 @@ const PatHome = () => {
         </div>
       </section>
 
-     
       {/* Technology Showcase */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -468,7 +461,7 @@ const PatHome = () => {
       {/* AI Chatbot Section */}
       <div className="fixed bottom-6 right-6 z-50">
         {/* Chatbot Toggle Button */}
-        {/* <Chatbox/> */}
+        <Chatbox />
         <button
           onClick={() => setChatbotOpen(!chatbotOpen)}
           className="bg-teal-600 hover:bg-teal-700 text-white rounded-full p-4 shadow-lg transition-all duration-300 flex items-center"
@@ -491,65 +484,9 @@ const PatHome = () => {
         </button>
       </div>
 
-      {/* Sexual Abuse Support Section in Main Content */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center">
-            <div className="lg:w-1/2 lg:pr-12 mb-12 lg:mb-0">
-              <div className="inline-flex items-center px-4 py-2 bg-pink-50 rounded-full mb-4">
-                <Shield className="w-5 h-5 text-pink-400 mr-2" />
-                <span className="text-pink-400 font-medium text-sm">
-                  CONFIDENTIAL SUPPORT
-                </span>
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Safe Space for Sexual Abuse & Sexual Health Support
-              </h2>
-              <div className="w-16 h-1 bg-pink-400 mb-6"></div>
-
-              <p className="text-lg text-gray-600 mb-6">
-                Love Hospital provides free, compassionate support for survivors
-                of sexual violence through our specialized program. Our trained
-                counselors offer judgment-free assistance ensuring a safe and
-                private way to access help. We also offer confidential sexual
-                health consultations for those who prefer to avoid face-to-face
-                discussions.
-              </p>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  "Completely confidential conversations",
-                  "Option to remain anonymous",
-                  "Trauma-informed specialists",
-                  "No pressure to report (unless minor)",
-                  "Help understanding your options",
-                  "Connection to local resources",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <Check className="w-5 h-5 text-pink-500 mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-700">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
-                <Link
-                  to="/anonymous"
-                  className="inline-flex items-center justify-center px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white font-medium rounded-lg transition-all duration-300 shadow-md"
-                >
-                  Speak with a Specialist
-                </Link>
-              </div>
-
-              <div className="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <p className="text-gray-700 text-sm">
-                  <strong>Remember:</strong> You are not alone. Healing is
-                  possible, and we're here to support you every step of the way.
-                </p>
-              </div>
-            </div>
-
+      <section>
+        <div>
+          <div>
             <div className="lg:w-1/2">
               <div className="relative rounded-xl overflow-hidden shadow-lg">
                 <img

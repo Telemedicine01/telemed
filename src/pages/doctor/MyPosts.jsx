@@ -76,9 +76,114 @@ const MyPosts = () => {
     fetchArticles();
   }, []);
 
-  const filteredArticles = articles.filter(article => 
-    article.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  {filteredArticles.length > 0 ? (
+    <div className="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead className="bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Title
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Created
+              </th>
+              <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Stats
+              </th>
+              <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {filteredArticles.map((article) => (
+              <tr key={article.id}>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="text-sm font-medium text-gray-900">{article.title}</div>
+                  <div className="text-sm text-gray-500">{article.excerpt}</div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusStyles[article.status]}`}>
+                    {article.status}
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${categoryStyles[article.category]}`}>
+                    {article.category}
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  {new Date(article.createdAt).toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <div className="flex space-x-4">
+                    <span className="flex items-center text-sm text-gray-500">
+                      <Eye className="h-4 w-4 mr-1" />
+                      {article.views}
+                    </span>
+                    <span className="flex items-center text-sm text-gray-500">
+                      <Heart className="h-4 w-4 mr-1" />
+                      {article.likes}
+                    </span>
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button className="text-teal-600 hover:text-teal-900 mr-4">
+                    <Eye className="h-5 w-5" />
+                  </button>
+                  <button className="text-blue-600 hover:text-blue-900 mr-4">
+                    <Edit className="h-5 w-5" />
+                  </button>
+                  <button 
+                    className="text-rose-600 hover:text-rose-900"
+                    onClick={() => handleDelete(article.id)}
+                  >
+                    <Trash2 className="h-5 w-5" />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  ) : (
+    <div className="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden">
+      <div className="text-center py-16 px-4">
+        <FileText className="h-12 w-12 text-gray-300 mx-auto" />
+        <h3 className="mt-3 text-lg font-medium text-gray-900">No articles found</h3>
+        <p className="mt-1 text-gray-500 max-w-md mx-auto">
+          {searchTerm || filters.status || filters.category 
+            ? "No articles match your filters." 
+            : "You haven't published any articles yet."}
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/doctor/articles/new"
+            className="inline-flex items-center px-4 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
+          >
+            <Plus className="h-5 w-5 mr-2" />
+            Create New Article
+          </Link>
+          {(searchTerm || filters.status || filters.category) && (
+            <button
+              onClick={resetFilters}
+              className="ml-3 inline-flex items-center px-4 py-2.5 border border-gray-300 rounded-lg bg-white text-gray-700 hover:bg-gray-50 transition-colors duration-200 shadow-sm"
+            >
+              Reset Filters
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  )}
 
   const handleDelete = async (articleId) => {
     if (window.confirm('Are you sure you want to delete this article?')) {

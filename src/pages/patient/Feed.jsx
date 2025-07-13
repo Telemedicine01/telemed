@@ -23,122 +23,6 @@ const categoryStyles = {
   'General Health': 'bg-gray-100 text-gray-800'
 };
 
-// Mock articles data for fallback when API fails
-const mockArticles = [
-  {
-    id: '8',
-    title: 'Understanding Heart Health: Prevention Strategies for All Ages',
-    excerpt: 'Learn about key strategies to maintain a healthy heart through diet, exercise, and lifestyle modifications that can reduce your risk of cardiovascular disease.',
-    category: 'Cardiology',
-    likes: 142,
-    readingTime: '5 min read',
-    publishedAt: '2025-04-15T14:30:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. Sarah Johnson',
-      specialty: 'Cardiologist'
-    }
-  },
-  {
-    id: '2',
-    title: 'Childhood Vaccinations: What Parents Need to Know in 2025',
-    excerpt: 'A comprehensive guide to the latest vaccination recommendations, schedules, and addressing common concerns for parents of young children.',
-    category: 'Pediatrics',
-    likes: 87,
-    readingTime: '8 min read',
-    publishedAt: '2025-04-10T09:15:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. Michael Chen',
-      specialty: 'Pediatrician'
-    }
-  },
-  // {
-  //   id: '3',
-  //   title: 'Managing Anxiety in a Digital Age: Evidence-Based Approaches',
-  //   excerpt: 'Discover effective techniques and approaches for managing anxiety in today\'s constantly connected world, based on the latest mental health research.',
-  //   category: 'Mental Health',
-  //   likes: 203,
-  //   readingTime: '7 min read',
-  //   publishedAt: '2025-04-22T16:45:00Z',
-  //   imageUrl: 'https://images.unsplash.com/photo-1620857273868-c05eda8ddb3c?ixlib=rb-4.0.3',
-  //   author: {
-  //     name: 'Dr. Priya Sharma',
-  //     specialty: 'Psychiatrist'
-  //   }
-  // },
-  {
-    id: '4',
-    title: 'Plant-Based Eating: Building a Balanced Diet',
-    excerpt: "How to ensure you're getting all essential nutrients while following a plant-based diet, with meal plans and practical shopping tips.",
-    category: 'Nutrition',
-    likes: 156,
-    readingTime: '6 min read',
-    publishedAt: '2025-04-18T11:20:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3',
-    author: {
-      name: 'Maria Rodriguez, RD',
-      specialty: 'Registered Dietitian'
-    }
-  },
-  {
-    id: '5',
-    title: 'Perimenopause: Navigating the Transition Years',
-    excerpt: 'Understanding the physical and emotional changes during perimenopause and strategies for managing symptoms and maintaining wellness.',
-    category: 'Women\'s Health',
-    likes: 119,
-    readingTime: '9 min read',
-    publishedAt: '2025-04-05T08:30:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1556906851-2a51b4b1cb78?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. Amara Wilson',
-      specialty: 'OB/GYN'
-    }
-  },
-  {
-    id: '6',
-    title: 'The Latest in Sleep Science: Optimizing Your Rest',
-    excerpt: 'New research findings on sleep quality and practical habits you can implement tonight for better rest and improved overall health.',
-    category: 'General Health',
-    likes: 178,
-    readingTime: '5 min read',
-    publishedAt: '2025-04-20T19:10:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1520206183501-b80df61043c2?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. James Taylor',
-      specialty: 'Sleep Medicine'
-    }
-  },
-  {
-    id: '7',
-    title: 'Understanding the New Hypertension Guidelines',
-    excerpt: 'What the latest blood pressure guidelines mean for your health, including prevention strategies and when medication might be recommended.',
-    category: 'Preventive Care',
-    likes: 95,
-    readingTime: '6 min read',
-    publishedAt: '2025-04-12T15:30:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1631815588090-d4bfb6630fc4?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. Robert Kim',
-      specialty: 'Internal Medicine'
-    }
-  },
-  {
-    id: '1',
-    title: 'Childhood Obesity: Supportive Approaches for Families',
-    excerpt: 'Family-centered strategies for addressing childhood obesity with a focus on positive habits and maintaining psychological wellbeing.',
-    category: 'Pediatrics',
-    likes: 112,
-    readingTime: '7 min read',
-    publishedAt: '2025-04-08T10:15:00Z',
-    imageUrl: 'https://images.unsplash.com/photo-1560424560-f8c2a317b3b0?ixlib=rb-4.0.3',
-    author: {
-      name: 'Dr. Emily Washington',
-      specialty: 'Pediatric Endocrinologist'
-    }
-  }
-];
-
 const Feed = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -148,21 +32,23 @@ const Feed = () => {
     sortBy: 'newest'
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [assistantOpen, setAssistantOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const [chatMessages, setChatMessages] = useState([
+    { sender: 'assistant', text: 'Hello! How can I help you with health questions today?', time: 'Just now' }
+  ]);
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // Try fetching from API
         const response = await axios.get('YOUR_API_ENDPOINT');
-        console.log('API Response:', response.data);
+        console.log('API Response:', response.data); // Log the response
         if (Array.isArray(response.data)) {
-          setArticles(response.data);
+          setArticles(response.data); // Assuming articles are directly in the response
         } else if (response.data.articles) {
-          setArticles(response.data.articles);
+          setArticles(response.data.articles); // Adjust according to your API structure
         } else {
           console.error('Unexpected data structure:', response.data);
-          // Fallback to mock data if API structure is unexpected
-          setArticles(mockArticles);
         }
       } catch (error) {
         console.error('Error fetching articles:', error);
