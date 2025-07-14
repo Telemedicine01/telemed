@@ -1,56 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import SpecialtiesInput from "../components/doctorsSpecialties";
 import logo from "../assets/images/logo.png";
-import docnbaby from "../assets/images/docnbaby.png";
-
-// Mock API for testing when real API is unavailable
-const mockApi = {
-  register: (userData) => {
-    return new Promise((resolve, reject) => {
-      // Simulate network delay
-      setTimeout(() => {
-        // Check if email already exists in localStorage
-        const existingUsers = JSON.parse(
-          localStorage.getItem("mockUsers") || "[]"
-        );
-        const emailExists = existingUsers.some(
-          (user) => user.email === userData.email
-        );
-
-        if (emailExists) {
-          reject({
-            response: {
-              data: {
-                message:
-                  "Email already registered. Please use a different email.",
-              },
-            },
-          });
-        } else {
-          // Add new user to mock database
-          existingUsers.push(userData);
-          localStorage.setItem("mockUsers", JSON.stringify(existingUsers));
-
-          resolve({
-            data: {
-              user: userData,
-              token:
-                "mock-jwt-token-" + Math.random().toString(36).substring(2),
-            },
-          });
-        }
-      }, 800); // Simulate network delay
-    });
-  },
-};
 
 function SignUp() {
   const [step, setStep] = useState(1);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("");
@@ -61,7 +17,8 @@ function SignUp() {
   const [phoneNumber, setphoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [emergencyContactName, setemergencyContactName] = useState("");
-  const [emergencyContactRelationship, setemergencyContactRelationship] = useState("");
+  const [emergencyContactRelationship, setemergencyContactRelationship] = 
+    useState("");
   const [emergencyContactNumber, setemergencyContactNumber] = useState("");
   const [primaryPhysician, setPrimaryPhysician] = useState("");
   const [allergies, setAllergies] = useState("");
@@ -75,94 +32,8 @@ function SignUp() {
   const [professionalTitle, setProfessionalTitle] = useState("");
   const [bio, setBio] = useState("");
   const [availability, setAvailability] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
-
-    try {
-      // Basic validation
-      if (!email || !password || !confirmPassword || !role) {
-        throw new Error("Please complete all required fields");
-      }
-      if (password !== confirmPassword) {
-        throw new Error("Passwords do not match");
-      }
-
-      let userData = {
-        name,
-        email,
-        password,
-        role,
-        phoneNumber,
-        address
-      };
-
-      if (role === "patient") {
-        userData = {
-          ...userData,
-          dateOfBirth: dateofbirth,
-          gender,
-          bloodType: bloodtype,
-          emergencyContact: {
-            name: emergencyContactName,
-            relationship: emergencyContactRelationship,
-            phoneNumber: emergencyContactNumber
-          },
-          medicalInfo: {
-            primaryPhysician,
-            allergies,
-            currentMedication,
-            chronicConditions
-          },
-          insuranceInfo: {
-            primaryInsurance,
-            insuranceId
-          }
-        };
-      } else if (role === "doctor") {
-        userData = {
-          ...userData,
-          medicalLicense,
-          officeNumber,
-          professionalTitle,
-          bio,
-          specialties,
-          availability
-        };
-      }
-
-      const response = await axios.post(
-        "https://telemedicine-api-09u5.onrender.com/users/register", 
-        userData
-      );
-
-      console.log("Signup successful:", response.data);
-      
-      // Redirect to login page after successful signup
-      navigate("/login", { 
-        state: { 
-          successMessage: "Registration successful! Please log in." 
-        } 
-      });
-
-    } catch (error) {
-      if (error.response) {
-        setError(error.response.data.message || "Signup failed. Please try again.");
-      } else if (error.request) {
-        setError("No response from server. Please try again later.");
-      } else {
-        setError(error.message || "An error occurred. Please try again.");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // ... rest of the component code remains the same ...
   const handleNextStep = () => {
     if (step === 1) {
       if (!email || !password || !confirmPassword || !role) {
@@ -182,11 +53,19 @@ function SignUp() {
     setStep((prev) => prev - 1);
   };
 
-  const maxSteps = role === "doctor" ? 4 : 6;
-
   return (
     <div className="flex items-center justify-center min-h-screen bg-teal-50 px-4">
       <div className="w-full max-w-2xl bg-white p-8 rounded-lg shadow-md">
+        {/* Logo at the top linking to home */}
+        <div className="flex justify-center mb-6">
+          <img 
+            src={logo} 
+            alt="Logo" 
+            className="h-16 cursor-pointer" 
+            onClick={() => navigate("/")}
+          />
+        </div>
+
         {error && (
           <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-md text-sm">
             {error}
@@ -262,142 +141,142 @@ function SignUp() {
                 />
               </div>
 
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">
-                    I am a:
-                  </label>
-                  <div className="grid grid-cols-2 gap-4">
-                    <button
-                      type="button"
-                      className={`p-4 border rounded-lg flex items-center justify-center ${
-                        role === "patient"
-                          ? "border-teal-600 bg-teal-50 text-teal-600"
-                          : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                      }`}
-                      onClick={() => setRole("patient")}
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">
+                  I am a:
+                </label>
+                <div className="grid grid-cols-2 gap-4">
+                  <button
+                    type="button"
+                    className={`p-4 border rounded-lg flex items-center justify-center ${
+                      role === "patient"
+                        ? "border-teal-600 bg-teal-50 text-teal-600"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
+                    onClick={() => setRole("patient")}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 mr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                      </svg>
-                      Patient
-                    </button>
-                    <button
-                      type="button"
-                      className={`p-4 border rounded-lg flex items-center justify-center ${
-                        role === "doctor"
-                          ? "border-teal-600 bg-teal-50 text-teal-600"
-                          : "border-gray-300 text-gray-700 hover:bg-gray-50"
-                      }`}
-                      onClick={() => setRole("doctor")}
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                    Patient
+                  </button>
+                  <button
+                    type="button"
+                    className={`p-4 border rounded-lg flex items-center justify-center ${
+                      role === "doctor"
+                        ? "border-teal-600 bg-teal-50 text-teal-600"
+                        : "border-gray-300 text-gray-700 hover:bg-gray-50"
+                    }`}
+                    onClick={() => setRole("doctor")}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 mr-2"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 mr-2"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                        />
-                      </svg>
-                      Doctor
-                    </button>
-                  </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                      />
+                    </svg>
+                    Doctor
+                  </button>
                 </div>
               </div>
-              </div>
-            )}
+            </div>
+          </div>
+        )}
 
-            {/* Step 2 - Personal Information */}
-            {step === 2 && (
-              <div className="space-y-6">
+        {/* Step 2 - Personal Information */}
+        {step === 2 && (
+          <div className="space-y-6">
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">
+                Full Name
+              </label>
+              <input
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your full name"
+                required
+              />
+            </div>
+
+            {role === "patient" && (
+              <>
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Full Name
+                    Date of Birth
                   </label>
                   <input
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Your full name"
+                    type="date"
+                    value={dateofbirth}
+                    onChange={(e) => setDateofbirth(e.target.value)}
                     required
                   />
                 </div>
 
-                {role === "patient" && (
-                  <>
-                    <div>
-                      <label className="block text-gray-700 font-medium mb-2">
-                        Date of Birth
-                      </label>
-                      <input
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
-                        type="date"
-                        value={dateofbirth}
-                        onChange={(e) => setDateofbirth(e.target.value)}
-                        required
-                      />
-                    </div>
+                <div>
+                  <label className="block text-teal-700 font-medium mb-2">
+                    Gender
+                  </label>
+                  <select
+                    className="w-full px-4 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    required
+                  >
+                    <option value="">Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
 
-                  <div>
-                    <label className="block text-teal-700 font-medium mb-2">
-                      Gender
-                    </label>
-                    <select
-                      className="w-full px-4 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value)}
-                      required
-                    >
-                      <option value="">Select your gender</option>
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-teal-700 font-medium mb-2">
-                      Blood Type
-                    </label>
-                    <select
-                      className="w-full px-4 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
-                      value={bloodtype}
-                      onChange={(e) => setBloodType(e.target.value)}
-                    >
-                      <option value="">Select blood type</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
-                  </div>
-                </>
-              )}
+                <div>
+                  <label className="block text-teal-700 font-medium mb-2">
+                    Blood Type
+                  </label>
+                  <select
+                    className="w-full px-4 py-2 border border-teal-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
+                    value={bloodtype}
+                    onChange={(e) => setBloodType(e.target.value)}
+                  >
+                    <option value="">Select blood type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </div>
+              </>
+            )}
 
             {role === "doctor" && (
               <>
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Medical License Number
                 </label>
                 <input
@@ -414,7 +293,7 @@ function SignUp() {
             <h3 className="text-2xl font-bold text-teal-700 text-center mb-6">
               Contact Information
             </h3>
-            <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+            <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
               Phone Number
             </label>
             <input
@@ -425,7 +304,7 @@ function SignUp() {
               placeholder="Your Number"
               required
             />{" "}
-            <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+            <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
               Address
             </label>
             <input
@@ -438,7 +317,7 @@ function SignUp() {
             />{" "}
             {role === "doctor" && (
               <>
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Office Number
                 </label>
                 <input
@@ -457,7 +336,7 @@ function SignUp() {
                 <h3 className="text-2xl font-bold text-teal-700 text-center mb-6">
                   Emergency Contact
                 </h3>
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Name
                 </label>
                 <input
@@ -468,7 +347,7 @@ function SignUp() {
                   placeholder="Your emergency contact"
                   required
                 />{" "}
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Relationship
                 </label>
                 <input
@@ -481,7 +360,7 @@ function SignUp() {
                   placeholder="relationship"
                   required
                 />{" "}
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Phone Number
                 </label>
                 <input
@@ -499,7 +378,7 @@ function SignUp() {
                 <h3 className="text-2xl font-bold text-teal-700 text-center mb-6">
                   Professional Profile
                 </h3>
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Professional Title
                 </label>
                 <input
@@ -507,7 +386,7 @@ function SignUp() {
                   type="text"
                   placeholder="Enter your office number"
                 />
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Bio
                 </label>
                 <textarea
@@ -520,7 +399,7 @@ function SignUp() {
                   specialties={specialties}
                   setSpecialties={setSpecialties}
                 />
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Availability
                 </label>
                 <input
@@ -539,7 +418,7 @@ function SignUp() {
                 <h3 className="text-2xl font-bold text-teal-700 text-center mb-6">
                   Medical Information
                 </h3>
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Primary Care Physician
                 </label>
                 <input
@@ -550,7 +429,7 @@ function SignUp() {
                   placeholder="Your Primary Care Physician"
                   required
                 />{" "}
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Allergies
                 </label>
                 <input
@@ -561,7 +440,7 @@ function SignUp() {
                   placeholder="Allergies"
                   required
                 />{" "}
-                <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+                <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
                   Current Medication
                 </label>
                 <input
@@ -592,7 +471,7 @@ function SignUp() {
             <h3 className="text-2xl font-bold text-teal-700 text-center mb-6">
               Insurance Information
             </h3>
-            <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+            <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
               Primary Insurance
             </label>
             <input
@@ -603,7 +482,7 @@ function SignUp() {
               placeholder="Your primary Insurance"
               required
             />{" "}
-            <label className="block text-teal-700 font-medium mb-1 flex items-center gap-2">
+            <label className=" text-teal-700 font-medium mb-1 flex items-center gap-2">
               Insurance ID
             </label>
             <input
@@ -616,34 +495,6 @@ function SignUp() {
             />{" "}
           </div>
         )}
-        {!(step === 4 && role === "doctor") && (
-          <div className="flex justify-between mt-6">
-            {step > 1 && (
-              <button
-                onClick={handlePreviousStep}
-                className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white rounded"
-              >
-                Back
-              </button>
-            )}
-            {step < 6 && (
-              <button
-                onClick={handleNextStep}
-                className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded"
-              >
-                Next
-              </button>
-            )}
-            {step === 6 && (
-              <button
-                type="submit"
-                className="px-4 py-2 bg-teal-600 text-white rounded"
-              >
-                Sign Up
-              </button>
-            )}
-          </div>
-        )}
 
         {/* Navigation buttons */}
         <div className="flex justify-between mt-6">
@@ -651,7 +502,6 @@ function SignUp() {
             <button
               onClick={handlePreviousStep}
               className="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-white rounded transition duration-200"
-              disabled={isLoading}
               type="button"
             >
               Back
@@ -659,24 +509,21 @@ function SignUp() {
           ) : (
             <div></div> // Empty div to maintain space
           )}
-          
+
           {step < (role === "doctor" ? 4 : 6) ? (
             <button
               onClick={handleNextStep}
               className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded transition duration-200"
-              disabled={isLoading}
               type="button"
             >
               Next
             </button>
           ) : (
             <button
-              onClick={handleSubmit}
               className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white rounded transition duration-200"
-              disabled={isLoading}
               type="submit"
             >
-              {isLoading ? "Signing Up..." : "Sign Up"}
+              Sign Up
             </button>
           )}
         </div>

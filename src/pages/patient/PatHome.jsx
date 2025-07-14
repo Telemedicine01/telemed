@@ -16,9 +16,16 @@ import {
   MapPin,
   CheckCircle,
   Star,
+  Check,
 } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 import Chatbox from "../../components/Chatbox";
+import patphone from "../../assets/images/patphone.jpeg"
+import hospital from "../../assets/images/hospital.jpeg"
+import smilingpat from "../../assets/images/smilingpat.jpeg"
+import counseling from "../../assets/images/docnbaby.png"
+
 
 const PatHome = () => {
   const [chatbotOpen, setChatbotOpen] = useState(false);
@@ -42,12 +49,12 @@ const PatHome = () => {
                 through our secure telehealth platform.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
+             <Link to="/login">
                 <button className="bg-white text-teal-700 hover:bg-teal-50 px-6 py-3 rounded-lg font-medium text-lg flex items-center justify-center transition-all">
                   <User className="mr-2 h-5 w-5" /> Patient Login
                 </button>
-                <button className="bg-teal-700 text-white hover:bg-teal-800 px-6 py-3 rounded-lg font-medium text-lg flex items-center justify-center transition-all">
-                  Learn More <ArrowRight className="ml-2 h-5 w-5" />
-                </button>
+                
+             </Link>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-end">

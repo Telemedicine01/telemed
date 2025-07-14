@@ -21,9 +21,11 @@ import DocChat from "./pages/doctor/DocChat";
 import PatChat from "./pages/patient/PatChat";
 import PatDash from "./pages/patient/PatDash";
 import AllPatients from "./pages/doctor/AllPatients";
+import AllDocs from "./pages/patient/AllDocs"
 import DocDash from "./pages/doctor/DocDash";
 import PatMessages from "./pages/patient/PatMessages";
 import PatInfo from "./pages/doctor/PatInfo";
+import BookAppointment from "./pages/patient/BookAppointment";
 
 function App() {
   return (

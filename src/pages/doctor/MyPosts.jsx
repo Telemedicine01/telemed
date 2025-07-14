@@ -76,6 +76,23 @@ const MyPosts = () => {
     fetchArticles();
   }, []);
 
+ const filteredArticles = articles.filter(article => 
+    article.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+ 
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center space-y-4">
+          <Loader2 className="h-10 w-10 text-teal-600 animate-spin mx-auto" />
+          <p className="text-gray-600 font-medium">Loading your articles...</p>
+        </div>
+      </div>
+    );
+  }
+
   {filteredArticles.length > 0 ? (
     <div className="bg-white rounded-xl shadow-xs border border-gray-100 overflow-hidden">
       <div className="overflow-x-auto">

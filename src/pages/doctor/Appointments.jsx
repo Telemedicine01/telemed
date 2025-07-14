@@ -101,13 +101,7 @@ const Appointments = () => {
             <p className="text-gray-500">View and manage patient appointments</p>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-            <button 
-              onClick={bookAppointment}
-              className="flex items-center justify-center px-4 py-2.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 shadow-sm"
-            >
-              <PlusCircle className="h-5 w-5 mr-2" />
-              Book Appointment
-            </button>
+            
           </div>
         </div>
 
